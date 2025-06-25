@@ -10,9 +10,13 @@ import SwiftData
 
 @main
 struct SpanishFiestaApp: App {
+    init() {
+        try? WordLibrary.load()
+    }
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            User.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +29,7 @@ struct SpanishFiestaApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
         .modelContainer(sharedModelContainer)
     }
